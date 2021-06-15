@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car racing</title>
+</head>
+<body onload="add()">
+    <h1>car racing</h1>
+    <br>
+    <span>
+    <h1>game status:</h1>
+    <h2 id="status"><u> NULL/0</u></h2>
+    </span>
+    <br>
+    <canvas id="myCanvas" width="800" height="600"></canvas>
+    <br>
+    <b class="text-danger">NOTE: </b>IF CARS ARE NOT VISIBLE, PRESS ANY ARROW KEY.
+</body>
+</html>
+
+<style>
+body{
+    text-align: center;
+    background-image:url("racing.gif");
+    background-position: center;
+    background-size: cover;
+    }
+/* h1 and h2 tags */
+h1{
+    font-variant: small-caps;
+    color: white;
+}
+/* Canvas */
+#status{
+    color: red
+}
+#myCanvas{
+    border-width: 20px;
+    border-color: white;
+    border-style: ridge;
+    background-color: white;
+}
+</style>
+
+<script>
+    canvas = document.getElementById('myCanvas');
+    ctx = canvas.getContext('2d');
+
+    car_width = 100;
+    car_height = 50;
+
+    bg_image = 'canvasBG.jpg';
+    car_image = 'car1.png';
+
+    car_x = 10;
+    car_y = 10;
+
+    function add() {
+        background_imgTag = new Image();
+        background_imgTag.onload = uploadBackground;
+        background_imgTag.src = bg_image;
+
+        car_imgTag = new Image();
+        car_imgTag.onload = uploadCar;
+        car_imgTag.src = car_image;
+    }
+
+    function uploadBackground() {
+        ctx.drawImage(background_imgTag,0,0,canvas.width,canvas.height);
+    }
+
+    function uploadCar() {
+        ctx.drawImage(car_imgTag,car_x,car_y,car_width,car_height);
+    }
+
+    window.addEventListener("keydown",my_keydown)
+
+    function my_keydown(e) {
+        keyPressed = e.keyCode;
+        console.log(keyPressed);
+
+        if (keyPressed == '37')
+      {
+          left();
+          console.log("left");
+      }
+
+      if (keyPressed =='38')
+      {
+          up();
+          console.log("up");
+      }
+
+      if (keyPressed == '39')
+      {
+          right();
+          console.log("right");
+      }
+
+      if (keyPressed == '40')
+      {
+          down();
+          console.log("down");
+      }
+    }
+</script>
